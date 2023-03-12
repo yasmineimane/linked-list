@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct node{
+	char c;
+	struct node *link;
+};
+void add_at_end(struct node *);
+void print_name(struct node *);
+int main()
+{
+	struct node *head = malloc(sizeof(struct node));
+	head -> c = 'y';
+	head -> link = NULL;
+	struct node *current = malloc(sizeof(struct node));
+	current -> c = 'a';
+	current -> link = NULL;
+	head -> link = current;
+	current = malloc(sizeof(struct node));
+	current -> c = 's';
+	current -> link = NULL;
+	head -> link -> link = current;
+	current = malloc(sizeof(struct node));
+	current -> c = 'm';
+	current -> link = NULL;
+	head -> link -> link -> link = current;
+	current = malloc(sizeof(struct node));
+	current -> c = 'i';
+	current -> link = NULL;
+	head -> link -> link -> link -> link = current;
+	current = malloc(sizeof(struct node));
+	current -> c = 'n';
+	current -> link = NULL;
+	head -> link -> link -> link -> link -> link = current;
+	add_at_end(head);
+	print_name(head);
+	return 0;
+}
+
+void add_at_end(struct node *head){
+	struct node *ptr, *temp;
+	ptr = head;
+	temp = malloc(sizeof(struct node));
+	temp -> c = 'e';
+	temp -> link = NULL;
+	while(ptr -> link != NULL)
+	{
+		ptr = ptr -> link;
+	}
+	ptr -> link = temp;
+}
+
+void print_name(struct node *h){
+	struct node *p;
+	p = h;
+	while(p != NULL)
+	{
+		printf("%c",p -> c);
+		p = p -> link;
+	}
+}
