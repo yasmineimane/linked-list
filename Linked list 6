@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct node
+{
+	int data;
+	struct node *link;
+}*head;
+void creat_list(int);
+void display_data(int);
+
+int main()
+{
+	int n;
+	printf("Input number of nodes : ");
+	scanf("%d",&n);
+	creat_list(n);
+	display_data(n);
+	return 0;
+}
+
+void creat_list(int n){
+	struct node *current,*tmp;
+	int num,i;
+	head =(struct node *)malloc(sizeof(struct node));
+	if(head == NULL)
+	{
+		printf("Memorry can't be allocated.");
+	}else
+	{
+		printf("Input data for node 1 : ");
+		scanf("%d",&num);
+		head -> data = num;
+		head -> link = NULL;
+		tmp = head;
+	}
+	for(i = 2;i <= n;i++)
+	{
+		current =(struct node *)malloc(sizeof(struct node));
+		if(current == NULL)
+		{
+			printf("Memorry can't be allocated.");
+		}
+		printf("Input fata for node %d : ",i);
+		scanf("%d",&num);
+		current -> data = num;
+		current -> link = NULL;
+		tmp -> link = current;
+		tmp = tmp -> link;
+	}
+}
+
+void display_data(int n){
+	struct node *tmp;
+	int i;
+    int T[n];
+	if(head == NULL)
+	{
+		printf("List is empty");
+	}else
+	{
+		tmp = head;
+		i = 1;
+		while(tmp != NULL && i <= n)
+		{
+			T[i] = tmp -> data;
+			tmp = tmp -> link;
+			i++;
+		}
+		for(i = n;i > 0;i--)
+		{
+			printf("data = %d\n",T[i]);
+		}
+	}
+}
